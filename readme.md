@@ -1,10 +1,10 @@
 <h1> Pokemon Stream Aid</h1>
 A tool created using Python's opencv library to be used when streaming or recording gameplay of Pokemon Scarlet/Violet to update overlays tracking opponent's team and win/loss record
 
-<h2> Inital setup </h2>
+<h2>Setup </h2>
 This program has been tested to work with both the Switch and Switch 2. In order to make it work on both, there is some inital setup that needs to be done. 
 You must first verify that your console is outputting at a resolution of 720 x 1280p. This can be verified in the settings under Display. Below is a picture of the settings from a Switch 2:
-![Image of Settings]![IMG_2748](https://github.com/user-attachments/assets/1c5e599d-92df-459a-9b70-af2c641e47bd)
+
 
 Once that is setup on the Switch, there are some steps that need to be done on your computer.
 - Install Python from [here](https://www.python.org/downloads/)
