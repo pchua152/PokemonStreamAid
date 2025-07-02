@@ -15,7 +15,8 @@ This setup has only been tested on OBS Studio, which you can download <a href = 
 - Once downloaded, setup a scene that is just your capture card and fit to screen
     - For most capture cards, click Add Source and it will be under Video Capture Device
     - If this doesn't work, refer to the manual of your capture card
-- Set up a virtual camera that captures this scene. 
+- Set up a virtual camera that captures this scene.
+- Create another scene that has the `opponent_team.png` and the `record.txt` if you want to display these during a recording/livestream
 
   
 
