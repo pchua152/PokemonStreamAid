@@ -6,6 +6,10 @@ import os
 def read_video():
     file_path = 1
     capture = cv.VideoCapture(file_path)
+
+    target_width = 1280
+    target_height = 720
+
     
     w,l = 0,0
     recorded = True
@@ -19,9 +23,17 @@ def read_video():
     win_lose(w,l)
     while (capture.isOpened()):
         ret, frame = capture.read()
+        frame = cv.resize(frame, (target_width, target_height))
         cv.imshow("See this", frame)
+        print(frame.shape[0])
+        print(frame.shape[1])
+
+        
+            
         gray_scale = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
         width,height = gray_scale.shape[::-1]
+        print(gray_scale.shape)
+        cv.imshow("Gray", gray_scale)
         #Team check
         result = cv.matchTemplate(gray_scale,template, cv.TM_CCOEFF_NORMED)
         
