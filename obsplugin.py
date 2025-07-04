@@ -21,6 +21,7 @@ def read_video():
     win_template = cv.imread(win_image,0)
     
     win_lose(w,l)
+    saved_team = cv.imread('Opponent_team.png')
     while (capture.isOpened()):
         ret, frame = capture.read()
         frame = cv.resize(frame, (target_width, target_height))
@@ -31,7 +32,7 @@ def read_video():
         gray_scale = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
         width,height = gray_scale.shape[::-1]
 
-        cv.imshow("Gray", gray_scale)
+        #cv.imshow("Gray", gray_scale)
         #Team check
         result = cv.matchTemplate(gray_scale,template, cv.TM_CCOEFF_NORMED)
         
@@ -44,17 +45,17 @@ def read_video():
         lose_result = cv.matchTemplate(opponent_side, win_template, cv.TM_CCOEFF_NORMED)
         _,max_val1, _, _ = cv.minMaxLoc(win_result)
         _,max_val2, _, _ = cv.minMaxLoc(lose_result)
+        print(f'{max_val1= } {max_val2=}')
         threshold = .8
-        result_threshold = .75
+        result_threshold = .755
         _,max_val,_,_ = cv.minMaxLoc(result)
+        print(f'{max_val}')
         if max_val >= threshold:
-            saved_team = cv.imread('Opponent_team.png')
-            if saved_team is not None:
-                #Check to see if its the same as the picture
-                if not (saved_team == frame[152:555, 821:895]).all():
-                    cv.imwrite("Opponent_team.png", frame[152:555, 821:895])
-            else:
-                 cv.imwrite("Opponent_team.png", frame[152:555, 821:895])
+            
+            cropped_team = frame[152:555, 821:895]
+            if saved_team is None or not np.array_equal(cropped_team, saved_team):
+                cv.imwrite("Opponent_team.png", cropped_team)
+                saved_team = cropped_team.copy()
             recorded = False
 
         
