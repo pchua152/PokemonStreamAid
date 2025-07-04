@@ -25,14 +25,14 @@ def read_video():
     while (capture.isOpened()):
         ret, frame = capture.read()
         frame = cv.resize(frame, (target_width, target_height))
-        cv.imshow("See this", frame)
+        cv.imshow("Capture", frame)
         
         
             
         gray_scale = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
         width,height = gray_scale.shape[::-1]
 
-        #cv.imshow("Gray", gray_scale)
+   
         #Team check
         result = cv.matchTemplate(gray_scale,template, cv.TM_CCOEFF_NORMED)
         
